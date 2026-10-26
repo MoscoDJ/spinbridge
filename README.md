@@ -16,7 +16,7 @@ Envía en vivo los slices de Resolume Arena (por Spout) a varios ventiladores ho
 
 ## Instalación en el Media Server
 
-1. Descarga `SpinBridge Setup 1.1.0.exe` de Releases y ejecútalo (Windows mostrará un aviso de SmartScreen porque no está firmado: *Más información → Ejecutar de todas formas*). No requiere Python ni nada más.
+1. Descarga `SpinBridge.Setup.1.1.0.exe` de [Releases](../../releases/latest) y ejecútalo (Windows mostrará un aviso de SmartScreen porque no está firmado: *Más información → Ejecutar de todas formas*). No requiere Python ni nada más.
 2. **Cierra SpinDisplay** si está abierto (ocupa el puerto UDP 50105 y la sesión de los ventiladores).
 3. Abre SpinBridge. Al arrancar:
    - registra su engine para usar la **GPU de alto rendimiento**; Resolume debe estar en la misma GPU (Spout solo comparte imagen dentro de una GPU). La GPU usada aparece en "GPU del bridge";
