@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' blob: data:; connect-src ws://127.0.0.1:* http://127.0.0.1:*; style-src 'self'">
+  <title>SpinBridge</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo"><span></span></div>
+      <div>
+        <div class="brand-name">SPINBRIDGE</div>
+        <div class="brand-sub">Resolume → F56 · <span class="by">by Osky</span></div>
+      </div>
+    </div>
+    <div class="status-pill" id="statusPill">
+      <span class="dot"></span><span id="statusText">CONECTANDO…</span>
+    </div>
+    <div class="transport">
+      <button class="btn-run" id="btnRun" title="F9">▶ RUN</button>
+      <button class="btn-stop" id="btnStop" title="F10">■ STOP</button>
+    </div>
+    <div class="top-meta">
+      <div><span class="label">CPU</span> <span id="cpu">–</span></div>
+      <div><span class="label">Engine</span> <span id="engineState" class="bad">desconectado</span></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel source-panel">
+      <div class="panel-head">
+        <h2>Fuente Spout</h2>
+        <div class="source-badge" id="sourceBadge">–</div>
+      </div>
+      <div class="source-body">
+        <div class="composite-wrap" id="compositeWrap">
+          <img id="compositeImg" alt="">
+          <div class="composite-empty" id="compositeEmpty">Sin señal</div>
+          <div class="slot-overlay" id="slotOverlay"></div>
+        </div>
+        <div class="source-info">
+          <label>Emisor
+            <select id="senderSelect"></select>
+          </label>
+          <dl>
+            <dt>Resolución</dt><dd id="srcSize">–</dd>
+            <dt>Lecturas/s</dt><dd id="srcFps">–</dd>
+            <dt>GPU del bridge</dt><dd id="srcGpu">–</dd>
+          </dl>
+          <details class="settings">
+            <summary>Ajustes de envío</summary>
+            <div class="settings-grid">
+              <label>FPS por ventilador <input type="number" id="setFps" min="5" max="30" step="1"></label>
+              <label>Calidad máx. <input type="number" id="setQuality" min="10" max="95" step="1"></label>
+              <label>Calidad mín. <input type="number" id="setMinQuality" min="5" max="95" step="1"></label>
+              <label>Mbit/s total de la red <input type="number" id="setTotalMbps" min="1" max="100" step="0.5"></label>
+              <label>Tope por ventilador <input type="number" id="setMbps" min="0.5" max="10" step="0.1"></label>
+              <label class="check"><input type="checkbox" id="setMask"> Máscara circular</label>
+              <label class="check"><input type="checkbox" id="setOptimize"> JPEG optimizado</label>
+              <div class="hint" id="perFanHint"></div>
+              <button class="btn-small" id="btnSaveSettings">Guardar</button>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Ventiladores</h2>
+        <div class="group-actions">
+          <span class="label">Todos:</span>
+          <button class="btn-small" id="btnAllPowerOn">Motor ON</button>
+          <button class="btn-small danger" id="btnAllPowerOff">Motor OFF</button>
+          <span class="sep"></span>
+          <span class="label">Brillo</span>
+          <button class="btn-small" id="btnAllBrightDown">−</button>
+          <button class="btn-small" id="btnAllBrightUp">+</button>
+        </div>
+      </div>
+      <div class="slots" id="slots"></div>
+    </section>
+
+    <section class="bottom">
+      <div class="panel detected-panel">
+        <div class="panel-head">
+          <h2>Detectados sin asignar</h2>
+          <span class="hint">Arrastra un ventilador a un slot. Suelta aquí para quitarlo.</span>
+        </div>
+        <div class="detected" id="detected"></div>
+        <div class="warning" id="discoveryError" hidden></div>
+      </div>
+      <div class="panel log-panel">
+        <div class="panel-head"><h2>Registro</h2></div>
+        <pre id="log"></pre>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="modal">
+      <h3 id="modalTitle"></h3>
+      <p id="modalText"></p>
+      <div class="modal-actions">
+        <button class="btn-small" id="modalCancel">Cancelar</button>
+        <button class="btn-small danger" id="modalOk">Confirmar</button>
+      </div>
+    </div>
+  </div>
+  <div class="toasts" id="toasts"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

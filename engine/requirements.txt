@@ -1,0 +1,6 @@
+aiohttp
+numpy
+opencv-python
+psutil
+SpoutGL
+PyOpenGL

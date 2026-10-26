@@ -1,0 +1,10 @@
+# dependencias y compilados
+app/node_modules/
+dist/
+engine-dist/
+build/
+__pycache__/
+*.pyc
+# datos locales
+*.log
+config.json

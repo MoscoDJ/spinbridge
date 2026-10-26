@@ -1,0 +1,36 @@
+{
+  "name": "spinbridge",
+  "productName": "SpinBridge",
+  "version": "1.1.0",
+  "description": "SpinBridge by Osky: Resolume (Spout) a ventiladores holográficos SpinDisplay F56 en vivo",
+  "main": "main.js",
+  "author": "Osky",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "mx.ninja.spinbridge",
+    "copyright": "© 2026 Osky",
+    "productName": "SpinBridge",
+    "directories": { "output": "../dist" },
+    "files": ["main.js", "preload.js", "renderer/**/*", "assets/**/*"],
+    "extraResources": [
+      { "from": "../engine-dist/spinbridge-engine", "to": "engine" }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "SpinBridge"
+    }
+  }
+}
